@@ -25,8 +25,11 @@ class WebhookController {
         try {
             const body = req.body;
 
+            console.log('📥 Webhook recibido:', JSON.stringify(body, null, 2));
+
             // Verificar que es un evento de WhatsApp
             if (body.object !== 'whatsapp_business_account') {
+                console.log('⚠️ No es un evento de WhatsApp Business');
                 return res.sendStatus(404);
             }
 
@@ -39,6 +42,7 @@ class WebhookController {
             const value = changes?.value;
 
             if (!value?.messages) {
+                console.log('ℹ️ Evento sin mensajes (posible status update)');
                 return; // No hay mensajes, posiblemente es un status update
             }
 

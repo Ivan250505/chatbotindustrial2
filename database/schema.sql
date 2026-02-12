@@ -3,12 +3,7 @@
 -- Chatbot Jóvenes Consultores - UTS
 -- ============================================
 
--- Crear base de datos (ejecutar si no existe)
-CREATE DATABASE IF NOT EXISTS chatbot_consultores
-CHARACTER SET utf8mb4
-COLLATE utf8mb4_unicode_ci;
 
-USE chatbot_consultores;
 
 -- ============================================
 -- TABLA: usuarios

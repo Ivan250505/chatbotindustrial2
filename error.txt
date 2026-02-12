@@ -1,0 +1,333 @@
+Ya desplegue el backend en render, pero el servidor no esta respoendio nada, que puede suceder ahí en la api de wsp si aparece los manejs enviados mas el bak no responde ni hay confrimaciones que una persona haya escrito que puede, ser te enviare un archivo con chatbotindustrial.env(que contiene las varianels e render) y aca mas abajo te mostrare lo de la api de wsp que si se meustra.
+
+Enviar mensajes de prueba
+Usa esta página para probar la plataforma de WhatsApp Business con una cuenta y un número de teléfono de prueba proporcionados por Meta.
+1. Genera un token de acceso temporal
+Inicia sesión con Facebook para seleccionar las cuentas de WhatsApp Business para las que quieres este token de acceso temporal. El token permanecerá activo durante 60 minutos. About access tokens.
+Cadena de token de acceso
+EAAZAl8gTMVlUBQq2mcWTkbXZBoJH43FdBXRJu5wAFWA18xbdbSDeyZBfAzVIywTIfojAVQG4FzZCiZBDOJhPRFSMYz2pZBMlTfSu9H2VW4g3ko4WJpinvIZASBEZAdrOF0qwI3Kw7R3BgaAZCztFsVufxmptt6xBwP1lNvyTKFY6Tl4z5Uec0ygs4fv7wkZA4Xb31gqoZCrvYylormt9g2uvjt9l4LUdwmijTjHTI7lpi6Q4tOZCRZBi6ZBEfEQrdyrlGmMBIQqD28XpgrVXQiaP4aqdezNCZBP
+2. Selecciona un número de teléfono para el campo "Desde"
+Se generaron una cuenta de prueba de WhatsApp Business y un número de prueba que te permiten enviarte mensajes de prueba gratis durante 90 días.
+De
+Número de prueba: +1 555 170 3221
+​
+Identificador de la cuenta de WhatsApp Business: 1432867301626432
+Identificador de número de teléfono: 963227280210526
+3. Agrega un número de teléfono del destinatario
+Puede haber hasta cinco números de teléfono para recibir mensajes de prueba gratuitos.
+Para
++57 320 3350186
+​
+4. Activa la escucha del webhook
+Comienza a escuchar eventos del webhook para recibir actualizaciones en tiempo real en el paso 7 más abajo. Información sobre webhooks
+Activar
+
+5. Elige un tipo de mensaje para enviar
+Elige una plantilla de mensaje de prueba aprobada previamente para enviarte. Información sobre los mensajes
+Confirmación del pedido
+​
+Confirmación del pedido
+​
+6: Enviar mensajes con la API
+Este comando sencillo de cURL enviará el mensaje de prueba a tu dispositivo. Puedes enviarlo con el botón Enviar mensaje incluido a continuación o ejecutar el comando desde un entorno local en tu dispositivo.
+12345
+curl -i -X POST `
+ https://graph.facebook.com/v22.0/963227280210526/messages `
+ -H 'Authorization: Bearer EAAZAl8gTMVlUBQq2mcWTkbXZBoJH43FdBXRJu5wAFWA18xbdbSDeyZBfAzVIywTIfojAVQG4FzZCiZBDOJhPRFSMYz2pZBMlTfSu9H2VW4g3ko4WJpinvIZASBEZAdrOF0qwI3Kw7R3BgaAZCztFsVufxmptt6xBwP1lNvyTKFY6Tl4z5Uec0ygs4fv7wkZA4Xb31gqoZCrvYylormt9g2uvjt9l4LUdwmijTjHTI7lpi6Q4tOZCRZBi6ZBEfEQrdyrlGmMBIQqD28XpgrVXQiaP4aqdezNCZBP' `
+ -H 'Content-Type: application/json' `
+ -d '{ \"messaging_product\": \"whatsapp\", \"to\": \"573203350186\", \"type\": \"template\", \"template\": { \"name\": \"jaspers_market_order_confirmation_v1\", \"lang
+7. Consulta los eventos del webhook
+Responde al mensaje de prueba desde tu dispositivo para ver la respuesta aquí abajo.
+Marca de tiempo
+Campo de webhook
+Carga
+11/2/2026, 19:30:47
+messages
+▶
+{"object":"whatsapp_business_account","entry":[{"id":"1432867301626432","changes...
+11/2/2026, 19:30:15
+messages
+▶
+{"object":"whatsapp_business_account","entry":[{"id":"1432867301626432","changes...
+11/2/2026, 19:29:53
+messages
+▶
+{"object":"whatsapp_business_account","entry":[{"id":"1432867301626432","changes...
+11/2/2026, 19:19:28
+messages
+▶
+{"object":"whatsapp_business_account","entry":[{"id":"1432867301626432","changes...
+11/2/2026, 19:15:27
+messages
+▶
+{"object":"whatsapp_business_account","entry":[{"id":"1432867301626432","changes...
+11/2/2026, 19:15:12
+messages
+▶
+{"object":"whatsapp_business_account","entry":[{"id":"1432867301626432","changes...
+11/2/2026, 19:15:12
+messages
+▶
+{"object":"whatsapp_business_account","entry":[{"id":"1432867301626432","changes...
+11/2/2026, 19:15:03
+messages
+▶
+{"object":"whatsapp_business_account","entry":[{"id":"1432867301626432","changes...
+11/2/2026, 19:15:02
+messages
+▶
+{"object":"whatsapp_business_account","entry":[{"id":"1432867301626432","changes...
+11/2/2026, 19:14:59
+messages
+▶
+{"object":"whatsapp_business_account","entry":[{"id":"1432867301626432","changes...
+¿Todo listo para configurar la integración de la API?
+Agrega el número de teléfono de tu negocio, crea un token de acceso permanente, configura la URL de devolución de llamada de webhook y más desde la página de configuración.
+
+
+Crea una cuenta de WhatsApp Business
+Para empezar a enviar mensajes a tus clientes, crea una cuenta de WhatsApp Business y agrega tu número de teléfono. Información sobre las cuentas de WhatsApp Business
+Una vez que agregues el número de teléfono del negocio, tendrás que completar el registro del número de teléfono.
+Administra tus cuentas de empresa y números de teléfono desde el administrador de WhatsApp.
+Crea un token de acceso permanente
+Para empezar a enviar mensajes a tus clientes, necesitarás un token de acceso permanente. Guárdalo en un lugar seguro para realizar llamadas a la API.
+En la configuración del negocio, puedes crear un token de acceso de usuario del sistema para los permisos whatsapp_business_messaging y whatsapp_business_management. Información sobre los tokens permanentes
+Subscribe this app to your WhatsApp Business account to receive webhooks
+Suscribe tu app a los eventos del webhook de la cuenta de WhatsApp Business especificada. Esto permite que tu app reciba notificaciones en tiempo real sobre eventos como la entrega de mensajes, las actualizaciones de estado y otras actividades de la cuenta.
+Suscribirte a webhooks
+Para que te lleguen alertas cuando recibas un mensaje o cuando cambie el estado de un mensaje, tienes que configurar un punto de conexión de webhook para tu app. Obtén información sobre cómo configurar webhooks.
+​
+Las apps solo podrán recibir webhooks de prueba enviados desde el panel de la app mientras esta esté sin publicar. No se entregarán datos de producción, incluidos los de los administradores, desarrolladores o evaluadores de la app, a menos que esta se haya publicado.
+URL de devolución de llamada
+https://chatbotindustrial.onrender.com/webhook
+Token de verificación
+●●●●●●●●●●●●●●●●
+
+Adjunta un certificado de cliente a las solicitudes de webhook. Más información.
+Campos del webhook
+​
+Campo
+Versión
+Prueba
+Suscribirse
+account_alerts
+Selector de versión de suscripción para el campo del webhook account_alerts. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+account_review_update
+Selector de versión de suscripción para el campo del webhook account_review_update. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+account_settings_update
+Selector de versión de suscripción para el campo del webhook account_settings_update. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+account_update
+Selector de versión de suscripción para el campo del webhook account_update. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+automatic_events
+Selector de versión de suscripción para el campo del webhook automatic_events. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+business_capability_update
+Selector de versión de suscripción para el campo del webhook business_capability_update. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+business_status_update
+Selector de versión de suscripción para el campo del webhook business_status_update. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+calls
+Selector de versión de suscripción para el campo del webhook calls. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+flows
+Selector de versión de suscripción para el campo del webhook flows. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+group_lifecycle_update
+Selector de versión de suscripción para el campo del webhook group_lifecycle_update. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+group_participants_update
+Selector de versión de suscripción para el campo del webhook group_participants_update. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+group_settings_update
+Selector de versión de suscripción para el campo del webhook group_settings_update. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+group_status_update
+Selector de versión de suscripción para el campo del webhook group_status_update. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+history
+Selector de versión de suscripción para el campo del webhook history. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+message_echoes
+Selector de versión de suscripción para el campo del webhook message_echoes. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+message_template_components_update
+Selector de versión de suscripción para el campo del webhook message_template_components_update. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+message_template_quality_update
+Selector de versión de suscripción para el campo del webhook message_template_quality_update. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+message_template_status_update
+Selector de versión de suscripción para el campo del webhook message_template_status_update. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+messages
+Selector de versión de suscripción para el campo del webhook messages. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+Suscritos
+messaging_handovers
+Selector de versión de suscripción para el campo del webhook messaging_handovers. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+partner_solutions
+Selector de versión de suscripción para el campo del webhook partner_solutions. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+payment_configuration_update
+Selector de versión de suscripción para el campo del webhook payment_configuration_update. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+phone_number_name_update
+Selector de versión de suscripción para el campo del webhook phone_number_name_update. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+phone_number_quality_update
+Selector de versión de suscripción para el campo del webhook phone_number_quality_update. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+security
+Selector de versión de suscripción para el campo del webhook security. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+smb_app_state_sync
+Selector de versión de suscripción para el campo del webhook smb_app_state_sync. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+smb_message_echoes
+Selector de versión de suscripción para el campo del webhook smb_message_echoes. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+template_category_update
+Selector de versión de suscripción para el campo del webhook template_category_update. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+template_correct_category_detection
+Selector de versión de suscripción para el campo del webhook template_correct_category_detection. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+tracking_events
+Selector de versión de suscripción para el campo del webhook tracking_events. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+user_preferences
+Selector de versión de suscripción para el campo del webhook user_preferences. Configúralo en la versión v24.0.
+v24.0
+​
+Probar
+
+No suscritos
+Agrega un método de pago
+Agrega un método de pago para comenzar a enviar mensajes iniciados por la empresa a tus clientes. Información sobre los precios
+Obtén información sobre la API
+Revisa la documentación para desarrolladores a fin de obtener información sobre cómo desarrollar tu app y empezar a enviar mensajes.

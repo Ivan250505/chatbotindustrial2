@@ -8,10 +8,12 @@ class WhatsAppService {
             'Authorization': `Bearer ${WHATSAPP_TOKEN}`,
             'Content-Type': 'application/json'
         };
+        console.log(`🔗 WhatsApp API URL: ${this.apiUrl}`);
     }
 
     async sendTextMessage(to, text) {
         try {
+            console.log(`📤 Enviando mensaje a ${to}: ${text.substring(0, 50)}...`);
             const response = await axios.post(this.apiUrl, {
                 messaging_product: 'whatsapp',
                 recipient_type: 'individual',
@@ -20,9 +22,10 @@ class WhatsAppService {
                 text: { body: text }
             }, { headers: this.headers });
 
+            console.log('✅ Mensaje enviado correctamente');
             return response.data;
         } catch (error) {
-            console.error('Error enviando mensaje de texto:', error.response?.data || error.message);
+            console.error('❌ Error enviando mensaje de texto:', error.response?.data || error.message);
             throw error;
         }
     }
