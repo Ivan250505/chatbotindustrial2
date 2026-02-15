@@ -252,7 +252,7 @@ class ConversationService {
         }
 
         if (pregunta.tipo === 'opciones') {
-            if (pregunta.opciones.length > 3) {
+            if (pregunta.opciones.length >= 3) {
                 const sections = [{
                     title: 'Opciones',
                     rows: pregunta.opciones.map((opcion, index) => ({
@@ -526,14 +526,14 @@ class ConversationService {
         await whatsappService.sendInteractiveButtons(
             telefono,
             '🎓 Seleccione su *programa académico*:',
-            ['Tec. Producción Ind.', 'Ing. de Sistemas']
+            ['Tec. Producción Ind.', 'Ing. Industrial']
         );
     }
 
     async processInfoPrograma(user, mensaje, telefono, messageType, interactiveId) {
         const programas = [
             'Tecnología en Producción Industrial',
-            'Ingeniería de Sistemas'
+            'Ingeniería Industrial'
         ];
 
         let programa = null;

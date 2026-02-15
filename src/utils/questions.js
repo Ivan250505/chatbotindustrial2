@@ -180,7 +180,7 @@ const PREGUNTAS = {
         opciones: [
             'Manejo avanzado y aprendizaje autónomo de nuevas herramientas',
             'Manejo funcional: no domina todas, pero se adapta con facilidad',
-            'Presenta dificultad con instrucciones y generación de resultados'
+            'Presenta dificultad con la elaboración de instrucciones y generación de resultados'
         ]
     },
     10: {
