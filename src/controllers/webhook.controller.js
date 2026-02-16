@@ -1,6 +1,12 @@
 const conversationService = require('../services/conversation.service');
 const { VERIFY_TOKEN } = require('../config/whatsapp');
 
+// Cache en memoria para deduplicación de mensajes
+const processedMessages = new Set();
+const MAX_CACHE_SIZE = 1000;
+// Máxima antigüedad permitida para un mensaje (en segundos)
+const MAX_MESSAGE_AGE_SECONDS = 120;
+
 class WebhookController {
 
     // Verificación del webhook (GET)
@@ -79,6 +85,36 @@ class WebhookController {
             console.log('👤 DE:', from);
             console.log('🆔 MESSAGE ID:', messageId);
             console.log('📝 TIPO:', message.type);
+
+            // ============ PROTECCIÓN 1: Rechazar mensajes antiguos ============
+            const messageTimestamp = parseInt(message.timestamp);
+            const currentTimestamp = Math.floor(Date.now() / 1000);
+            const messageAge = currentTimestamp - messageTimestamp;
+
+            console.log(`⏱️ Antigüedad del mensaje: ${messageAge} segundos`);
+
+            if (messageAge > MAX_MESSAGE_AGE_SECONDS) {
+                console.log(`⛔ MENSAJE DESCARTADO - Demasiado antiguo (${messageAge}s > ${MAX_MESSAGE_AGE_SECONDS}s)`);
+                console.log('   Probable reintento de Meta tras caída del servidor');
+                console.log('===========================================');
+                return;
+            }
+
+            // ============ PROTECCIÓN 2: Deduplicación por messageId ============
+            if (processedMessages.has(messageId)) {
+                console.log(`⛔ MENSAJE DESCARTADO - Duplicado: ${messageId}`);
+                console.log('===========================================');
+                return;
+            }
+
+            processedMessages.add(messageId);
+
+            // Limpiar cache si crece demasiado (eliminar los más antiguos)
+            if (processedMessages.size > MAX_CACHE_SIZE) {
+                const idsToRemove = [...processedMessages].slice(0, MAX_CACHE_SIZE / 2);
+                idsToRemove.forEach(id => processedMessages.delete(id));
+                console.log(`🧹 Cache limpiada: eliminados ${idsToRemove.length} IDs antiguos`);
+            }
 
             // Extraer el contenido del mensaje según su tipo
             let messageContent = '';
